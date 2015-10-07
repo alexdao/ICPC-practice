@@ -1,5 +1,3 @@
-package borg;
-
 import java.util.Scanner;
 
 /**

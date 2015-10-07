@@ -1,5 +1,3 @@
-package Scrimmage1;
-
 import java.util.Scanner;
 
 /**
