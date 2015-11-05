@@ -1,64 +1,73 @@
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Scanner;
 
-/**
- * Created by alex on 9/7/15.
- */
-public class Windows {
-
-    public static void main (String args[]){
+public class Windows{
+    public static void main(String args[]){
         Scanner in = new Scanner(System.in);
-        int windows = in.nextInt();
-        int counter = 0;
+        int counter = 1;
         while(true){
-            counter ++;
-            if(windows == 0){
+            int n = in.nextInt();
+            if (n == 0) {
                 break;
             }
-            ArrayList<Window> windowList = new ArrayList<Window>();
-            for(int i=0; i<windows; i++){
-                int x = in.nextInt();
-                int y = in.nextInt();
-                int width = in.nextInt();
-                int height = in.nextInt();
-                windowList.add(new Window(x, y, width, height));
-            }
-            Collections.reverse(windowList);
-            int queries = in.nextInt();
             System.out.println("Desktop " + counter + ":");
-            for(int i=0; i<queries; i++){
-                int row = in.nextInt();
-                int col = in.nextInt();
-                boolean bg = false;
-                for(int j=0; j<windowList.size(); j++){
-                    Window temp = windowList.get(j);
-                    if(row >= temp.x && row<= (temp.x+temp.width)){
-                        if(col >=temp.y && col <= (temp.y+temp.height)){
-                            System.out.println("window " + (windowList.size() - j));
-                            bg = true;
-                            break;
-                        }
+            ArrayList<Rect> rects = new ArrayList<>();
+            for(int i=0; i<n; i++){
+                int r = in.nextInt();
+                int c = in.nextInt();
+                int w = in.nextInt();
+                int h = in.nextInt();
+                rects.add(new Rect(i+1, r, c, w, h));
+            }
+
+            int m = in.nextInt();
+            for(int i=0; i<m ;i++){
+                int cr = in.nextInt();
+                int cw = in.nextInt();
+
+                String output = "";
+                for(int j = rects.size()-1; j>=0; j--){
+                    if(rects.get(j).getRect(cr, cw)){
+                        output += "window " + rects.get(j).number;
+                        break;
                     }
                 }
-                if(!bg){
+
+                if(output.length() > 0){
+                    System.out.println(output);
+                }
+                else{
                     System.out.println("background");
                 }
             }
+            counter++;
         }
     }
 
-    public static class Window{
-        int x;
-        int y;
-        int width;
-        int height;
+    public static class Rect{
+        int r;
+        int c;
+        int w;
+        int h;
+        int number;
 
-        public Window(int x, int y, int width, int height){
-            this.x = x;
-            this.y = y;
-            this.width = width;
-            this.height = height;
+        public Rect(int number, int r, int c, int w, int h){
+            this.number = number;
+            this.r = r;
+            this.c = c;
+            this.w = w;
+            this.h = h;
+        }
+
+        public boolean getRect(int cr, int cw){
+            boolean out = true;
+            if(cr < r || cr >= r+h){
+                out = false;
+            }
+            if(cw < c || cw >= c+w){
+                out = false;
+            }
+            return out;
         }
     }
 }
