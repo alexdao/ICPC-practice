@@ -26,7 +26,7 @@ public class BearAndDisplayedFriends {
             if(type == 1){
                 onlineFriends.put(friends[id-1], id);
                 if(onlineFriends.size() > k){
-                    int temp = onlineFriends.pollFirstEntry().getKey();
+                    onlineFriends.pollFirstEntry().getKey();
                 }
             }
             else{
