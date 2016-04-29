@@ -3,6 +3,7 @@ import java.util.Scanner;
 
 /**
  * Created by alex on 4/29/16.
+ * http://codeforces.com/contest/669/problem/B
  */
 public class LittleArtemAndGrasshopper {
 
