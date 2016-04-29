@@ -2,6 +2,7 @@ import java.util.Scanner;
 
 /**
  * Created by alex on 4/29/16.
+ * Problem found at: http://codeforces.com/contest/667/problem/A
  */
 public class PouringRain {
     public static void main(String args[]){
